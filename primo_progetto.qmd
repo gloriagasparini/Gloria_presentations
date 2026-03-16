@@ -1,0 +1,25 @@
+---
+title: "primo_progetto"
+author: "Gloria GAsparini"
+format: html
+editor: source
+code-fold: true
+execute: 
+  echo: true
+  
+---
+# Primo capitolo
+Questo documento va ad analizzare il file di Sara.dataset
+```{r}
+rm(list=ls())
+
+```
+```{r}
+summary(Sara_dataset$gender)
+```
+faccio la media della variabile mathquiz
+```{r}
+mean(Sara_dataset$mathquiz, na.rm = TRUE)
+```
+
+
