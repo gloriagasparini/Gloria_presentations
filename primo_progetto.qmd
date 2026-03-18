@@ -1,25 +1,141 @@
 ---
 title: "primo_progetto"
-author: "Gloria GAsparini"
+author: "Gloria Gasparini"
 format: html
 editor: source
 code-fold: true
 execute: 
   echo: true
-  
+embed-resources: true
+bibliography: bibliography.bib
+csl: apa.csl
+date: "`r Sys.Date()`"
 ---
-# Primo capitolo
-Questo documento va ad analizzare il file di Sara.dataset
+
+# [Primo capitolo]{style="color:#8d2a83;"}
+
+[Questo documento va ad analizzare il file di Sara.dataset]{.underline}
+
 ```{r}
 rm(list=ls())
 
 ```
+
 ```{r}
-summary(Sara_dataset$gender)
+library(readxl)
+Sara_dataset <- read_excel("C:/Users/gaspa/OneDrive/Desktop/ARCA/Gloria_presentations/Sara_dataset.xls")
+View(Sara_dataset)
 ```
-faccio la media della variabile mathquiz
+
+- Faccio la [media]{style="color:red;"} della variabile mathquiz
+
 ```{r}
 mean(Sara_dataset$mathquiz, na.rm = TRUE)
 ```
 
+::::: columns
+::: {.column width="50%"}
+-   colonna 1 colonna riferita alla variabile phobia = autovalutazione del timore verso la matematica su scala 0-10
 
+```{r}
+Sara_dataset$phobia
+```
+:::
+
+::: {.column width="50%"}
+-   colonna con la variabile mathquiz = punteggio ad un pre-test di matematica
+
+```{r}
+Sara_dataset$mathquiz
+```
+:::
+:::::
+
+- analizzo la relazione tra phobia autopercepita e punteggio ad un pre-test di matematica \`
+
+1. Scatter plot
+
+```{r}
+# 1. Scatter plot
+plot(Sara_dataset$mathquiz, Sara_dataset$phobia,
+     main = "Relazione tra paura della matematica e punteggio test",
+     ylab = "Phobia (0-10)",
+     xlab = "Punteggio Math Quiz",
+     pch = 19, col = "blue")
+
+
+
+# 2. Correlazione (Pearson)
+correlazione <- cor(Sara_dataset$phobia, Sara_dataset$mathquiz, method = "pearson", use = "complete.obs")
+print(correlazione)
+
+
+# Test di significatività della correlazione
+cor.test(Sara_dataset$phobia, Sara_dataset$mathquiz)
+
+# 3. Regressione lineare
+modello <- lm(mathquiz ~ phobia, data = Sara_dataset)
+summary(modello)
+
+```
+
+- Interpretazione: Intercetta= 32.5583, ovvero Se una persona non ha fobia, il punteggio medio previsto è circa 32.6 Coefficiente di phobia = -1.0741, ovvero effetto negativo → più fobia = peggior performance Significatività statistica: phobia = 0.00883 \> significativo → la fobia ha davvero effetto sul punteggio Multiple R-squared (regressione lineare): 0.07974 \> La fobia spiega solo l’8% della variabilità del punteggio
+
+Quindi: effetto significativo, ma debole in termini di spiegazione
+
+# [Secondo capitolo]{style="color:#8d2a83;"}
+
+- Quante persone frequentano ogni corso
+
+```{r}
+table(Sara_dataset$major)
+freq_major = table(Sara_dataset$major)
+
+barplot(freq_major,
+        main = "Distribuzione dei corsi di studio (major)",
+        xlab = "Major",
+        ylab = "Frequenza",
+        col = "lightblue",
+        las = 2) 
+
+Sara_dataset$major = factor(Sara_dataset$major,
+                             labels = c("psicologia", "medicina", 
+                                        "biologia", "sociologia", "economia"))
+
+freq_major = table(Sara_dataset$major)
+
+barplot(freq_major,
+        main = "Distribuzione dei major",
+        col = "lightblue")
+```
+
+# [Terzo capitolo]{style="color:#8d2a83;"}
+
+- Correlazione tra numero corsi di matematica frequentati (prevmath) e punteggio ad un test statistico (statquiz)
+
+```{r}
+cor(Sara_dataset$prevmath, Sara_dataset$statquiz, use = "complete.obs")
+# 3. Test di significatività
+test_cor <- cor.test(Sara_dataset$prevmath,
+                     Sara_dataset$statquiz,
+                     method = "pearson")
+
+test_cor
+```
+
+- Interpretazione: correlazione significativa
+
+
+![](foto%20matematica.jpg){fig-align="center" width="200" height="200"}
+
+molto bello questo articolo! [@clerici1996disturbi]
+
+secondo @clerici1996disturbi è una bella giornata
+
+@wilkinson1999statistical
+
+# [Conclusione]{style="color:#8d2a83;"}
+
+-   Prima ho studiato come la fobia influenza il punteggio al quiz di matematica e se c'è una relazione statisticamente significativa tra le due variabili.
+-   Poi ho indagato quante persone frequentano ogni corso.
+-   Inifine ho fatto una correlazione tra numero corsi di matematica frequentati (prevmath) e punteggio ad un test statistico è la correlazione è risultata significativa
