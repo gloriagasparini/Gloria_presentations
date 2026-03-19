@@ -1,8 +1,5 @@
 ---
 title: "Casting Film Horror"
-title-slide-attributes:
-  data-background-image: immagine1.jpg
-  data-background-opacity: "0.1"
 author: " Directed by: Gloria Gasparini"
 format: revealjs
 editor: source
@@ -34,14 +31,14 @@ slide-number: c/t
 # Analisi della personalità {transition="zoom" style="text-align: center; color:#5e6472;" background-image="Immagine slide copertina.jpg"}
 
 
-## Protagonisti: {.unlisted background-gradient="radial-gradient(#b0b0b0, #242531)"}
+## Protagonisti: {.unlisted background-gradient="radial-gradient(#000000, #b0b0b0)"}
 
 [Lello]{.underline}
 
 - il pz riporta alta soglia di stress ma altrettanta pazienza sul lavoro e nella vita di coppia
 - memoria selettiva si ricorda la provenienza, il lotto e il nome del salmone ma non di pagarmi Netflix
 
-## {transition=“fade” background-gradient="radial-gradient(#b0b0b0, #242531)"}
+## {transition=“fade” background-gradient="radial-gradient(#000000, #b0b0b0)"}
 
 [Aurora]{.underline}
 
