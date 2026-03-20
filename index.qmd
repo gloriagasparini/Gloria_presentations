@@ -1,7 +1,9 @@
 ---
 title: "primo_progetto"
 author: "Gloria Gasparini"
-format: html
+format: 
+  html:
+    toc: true
 editor: source
 code-fold: true
 execute: 
