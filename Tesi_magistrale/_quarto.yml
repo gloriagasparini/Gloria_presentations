@@ -1,0 +1,26 @@
+project:
+  type: book
+
+book:
+  title: "Titolo tesi"
+  author: "Gloria Gasparini"
+  date: "19/03/2026"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - capitolo_1.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+
